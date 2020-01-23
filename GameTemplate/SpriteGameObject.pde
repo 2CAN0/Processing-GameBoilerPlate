@@ -1,6 +1,5 @@
 class SpriteGameObject extends GameObject {
   PImage sprite;
-  PVector size;
   PVector tint;
   
   public SpriteGameObject(String assetName){

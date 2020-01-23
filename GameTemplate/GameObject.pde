@@ -1,5 +1,6 @@
 class GameObject {
-  PVector velocity, position, drawPosition;
+  PVector velocity, position, drawPosition, size;
+
   boolean visible = true;
   String id = "Null";
   GameObject Parent;
@@ -7,20 +8,25 @@ class GameObject {
 
 
   public GameObject() {
-    Setup(new PVector(0, 0), new PVector(0, 0));
+    Setup(new PVector(0, 0), new PVector(0, 0), new PVector(0, 0));
   }
 
   public GameObject(PVector position) {
-    Setup(position, new PVector(0, 0));
+    Setup(position, new PVector(0, 0), new PVector(0, 0));
   }
 
-  public GameObject(PVector position, PVector velocity) {
-    Setup(position, velocity);
+  public GameObject(PVector position, PVector size) {
+    Setup(position, size, new PVector(0, 0));
   }
 
-  protected void Setup(PVector position, PVector velocity) {
+  public GameObject(PVector position, PVector size, PVector velocity) {
+    Setup(position, size, velocity);
+  }
+
+  protected void Setup(PVector position, PVector size, PVector velocity) {
     this.position = position; 
     this.velocity = velocity;
+    this.size = size;
   }
 
   public void Update() {
@@ -30,6 +36,31 @@ class GameObject {
   }
 
   public void draw() {
-    
   }
+
+  public boolean Collide(GameObject other, RECTMODE mode) {
+    boolean x = false, 
+            y = false;
+            
+    if (mode == RECTMODE.Center) {
+      x = (other.position.x - size.x/2 > this.position.x - size.x/2 && other.position.x - size.x/2 < this.position.x + size.x/2) || 
+                  (other.position.x + size.x/2 > this.position.x - size.x/2 && other.position.x + size.x/2 < this.position.x + size.x/2);
+      y = (other.position.y - size.y/2 > this.position.y - size.y/2 && other.position.y - size.y/2 < this.position.y + size.y/2) ||
+                  (other.position.y + size.y/2 > this.position.y - size.y/2 && other.position.y + size.y/2 < this.position.y + size.y/2);
+    } else if (mode == RECTMODE.Corner){
+      x = (other.position.x > this.position.x && other.position.x < this.position.x + size.x ||
+           other.position.x + size.x > this.position.x && other.position.x + size.x < this.position.x + size.x);
+      y = (other.position.y > this.position.y && other.position.y < this.position.y + size.y ||
+           other.position.y + size.y > this.position.y && other.position.y + size.y < other.position.y + size.y);
+    } else  {
+      println("This specified rectmode isn't valid");
+    }
+    
+    return x && y;
+  }
+}
+
+public enum RECTMODE {
+  Center, 
+    Corner
 }

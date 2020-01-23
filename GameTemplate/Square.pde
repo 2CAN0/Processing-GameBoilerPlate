@@ -1,5 +1,5 @@
 class Square extends GameObject{
-   PVector size, clr;
+   PVector clr;
    int Origin = CENTER;
    
    public Square(PVector position, PVector velocity, PVector size, PVector clr){
