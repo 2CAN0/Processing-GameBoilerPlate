@@ -1,9 +1,8 @@
-class PlayingState extends GameObjectList{  
-  public PlayingState(){
-    
+class PlayingState extends GameObjectList {
+  public PlayingState() {
   }
-  
-  public void Update(){
-     super.Update();
+
+  public void Update() {
+    super.Update();
   }
 }

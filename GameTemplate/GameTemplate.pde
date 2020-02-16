@@ -13,7 +13,7 @@ void settings() {
 
   //fullScreen(P3D);
 
-  size(900, 500, P3D);
+  size(900, 900, P3D);
 }
 
 void setup() {

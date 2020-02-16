@@ -1,7 +1,7 @@
 class GameObject {
   PVector velocity, position, drawPosition, size;
 
-  boolean visible = true;
+  boolean enabled = true;
   String id = "Null";
   GameObject Parent;
   protected float deltaTime = 0;
