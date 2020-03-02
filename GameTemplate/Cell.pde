@@ -41,10 +41,6 @@ class Cell extends GameObject {
 
     // Bottom Border
     borders.Add(new Border(Position.Bottom, new PVector(position.x, position.y + size.y), new PVector(position.x + size.x, position.y + size.y)));
-
-    for (int iBorder = 0; iBorder < borders.children.size(); iBorder++) {
-      borders.children.get(iBorder).enabled = true;
-    }
   }
 
   public void ToggleWall(Position pos) {
