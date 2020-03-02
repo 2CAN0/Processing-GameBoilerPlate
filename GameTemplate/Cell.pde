@@ -115,7 +115,6 @@ class Border extends GameObject {
     if (enabled) {
       strokeWeight(weight);
       stroke(clr.x, clr.y, clr.z, 255);
-      fill(255);
       line(start.x, start.y, end.x, end.y);
     }
   }
