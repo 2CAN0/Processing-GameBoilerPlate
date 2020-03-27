@@ -36,7 +36,7 @@ class Node extends Cell {
   }
 
   public void draw() {
-    borders.draw();
+    super.draw();
 
     if (visited)
       fill(visitedBg.x, visitedBg.y, visitedBg.z);

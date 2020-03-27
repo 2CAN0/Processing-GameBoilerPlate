@@ -1,8 +1,8 @@
-class InputHelper {
+class InputHelper extends GameObject{
   private final int MAX_KEYS = 1024;
   private boolean[] keysPressed = new boolean[MAX_KEYS], 
     keysDown = new boolean[MAX_KEYS];
-  private boolean[] previousKeys = new boolean[MAX_KEYS];
+  //private boolean[] previousKeys = new boolean[MAX_KEYS];
   private int[] framesActive;
 
   public InputHelper() {
@@ -12,7 +12,7 @@ class InputHelper {
     }
   }
 
-  void draw() {
+  public void Update() {
     // Loop through all the keys and check if it's active
     // When it's active add 1 to the corresponding framesActive
     // if the framesActive is greater then 1 the key is pressed and not down (down means keyPressed for 1 frame)
@@ -28,11 +28,19 @@ class InputHelper {
     }
   }
 
-  public boolean Pressed(int keyCode) {
+  public boolean IsKeyPressed(int keyCode) {
     return keysPressed[keyCode];
   }
+  
+  public boolean IsKeyPressed(char key){
+     return keysPressed[key]; 
+  }
 
-  public boolean Down(int keyCode) {
+  public boolean IsKeyDown(int keyCode) {
     return keysDown[keyCode];
+  }
+  
+  public boolean IsKeyDown(char key){
+     return keysDown[key]; 
   }
 }

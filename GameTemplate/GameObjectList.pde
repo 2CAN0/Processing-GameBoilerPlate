@@ -2,6 +2,8 @@ class GameObjectList extends GameObject {
   protected ArrayList<GameObject> children;
 
   public GameObjectList() {
+    super();
+    id = "GameObjectList";
     children = new ArrayList<GameObject>();
   }
 
@@ -9,7 +11,7 @@ class GameObjectList extends GameObject {
     return children;
   }
 
-  public void Add(GameObject obj) {
+  public void Add(GameObject obj) {    
     obj.Parent = this;
     children.add(obj);
   }
@@ -17,11 +19,12 @@ class GameObjectList extends GameObject {
   public void Update() {
     super.Update();
     for (GameObject obj : children) {
-      obj.Update();
       PVector desiredPosition = new PVector(0, 0);
       desiredPosition.add(obj.Parent.position);
       desiredPosition.add(obj.position);
-      obj.drawPosition = desiredPosition;
+      obj.position = desiredPosition;
+      obj.Update();
+      Debug.log("Object:"+obj.id);
     }
   }
 

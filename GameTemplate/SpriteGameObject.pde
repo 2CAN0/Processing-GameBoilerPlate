@@ -36,8 +36,8 @@ class SpriteGameObject extends GameObject {
   public void draw() {
     tint(tint.x, tint.y, tint.z);
     if(size != null)
-      image(sprite, drawPosition.x, drawPosition.y, size.x, size.y);
+      image(sprite, position.x, position.y, size.x, size.y);
     else
-      image(sprite, drawPosition.x, drawPosition.y);
+      image(sprite, position.x, position.y);
   }
 }

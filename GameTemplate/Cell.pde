@@ -1,27 +1,31 @@
-class Cell extends GameObject {
-  GameObjectList borders = new GameObjectList();
-  PVector bg;
+class Cell extends GameObjectList {
+  public PVector bg;
   boolean prevEn;
 
   public Cell(PVector position, PVector size) {
-    super(position);
+    super();
+    this.position = position;
     this.size = size;
-
+    
+    id = "Cell";
     bg = new PVector(255, 255, 255);
     SetupBorders();
   }
 
   public Cell(PVector position, PVector size, PVector bg) {
-    super(position, size);
+    super();
+    this.position = position;
+    this.size = size;
     this.bg = bg;
     
+    id = "Cell";
     SetupBorders();
   }
   
 
-  void Update() { 
+  void Update() {
     if (prevEn != enabled) {
-      for (GameObject gobj : borders.children) {
+      for (GameObject gobj : children) {
         gobj.enabled = enabled;
       }
     }
@@ -29,32 +33,32 @@ class Cell extends GameObject {
     prevEn = enabled;
   }
 
-  void SetupBorders() {
+  void SetupBorders() {    
     // Top Border
-    borders.Add(new Border(Position.Top, position, new PVector(position.x + size.x, position.y)));
+    this.Add(new Border(Position.Top,  new PVector(0, 0), new PVector(size.x, 0)));
 
     // Left Border
-    borders.Add(new Border(Position.Left, position, new PVector(position.x, position.y + size.y)));
+    this.Add(new Border(Position.Left, new PVector(0, 0), new PVector(0, size.x)));
 
     // Right Border
-    borders.Add(new Border(Position.Right, new PVector(position.x + size.x, position.y), new PVector(position.x + size.x, position.y + size.y)));
+    this.Add(new Border(Position.Right, new PVector(size.x, 0), new PVector(size.x, size.y)));
 
     // Bottom Border
-    borders.Add(new Border(Position.Bottom, new PVector(position.x, position.y + size.y), new PVector(position.x + size.x, position.y + size.y)));
+    this.Add(new Border(Position.Bottom, new PVector(0, size.y), new PVector(size.x, size.y)));
   }
 
   public void ToggleWall(Position pos) {
-    for (int iBorder = 0; iBorder < borders.children.size(); iBorder++) {
-      Border b = (Border)borders.children.get(iBorder);
+    for (int iBorder = 0; iBorder < this.children.size(); iBorder++) {
+      Border b = (Border)this.children.get(iBorder);
 
       if (b.Pos() == pos) {
-        borders.children.get(iBorder).enabled = !borders.children.get(iBorder).enabled;
+        this.children.get(iBorder).enabled = !this.children.get(iBorder).enabled;
       }
     }
   }
 
   public void draw() {
-    borders.draw();
+    super.draw();
 
     noStroke();
     fill(bg.x, bg.y, bg.z);
@@ -115,7 +119,7 @@ class Border extends GameObject {
     if (enabled) {
       strokeWeight(weight);
       stroke(clr.x, clr.y, clr.z, 255);
-      line(start.x, start.y, end.x, end.y);
+      line(Parent.position.x + start.x, Parent.position.y + start.y, Parent.position.x + end.x, Parent.position.y + end.y);
     }
   }
 }

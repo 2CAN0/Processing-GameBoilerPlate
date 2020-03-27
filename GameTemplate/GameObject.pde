@@ -1,5 +1,5 @@
 class GameObject {
-  PVector velocity, position, drawPosition, size;
+  PVector velocity, position, size;
 
   boolean enabled = true;
   String id = "Null";
