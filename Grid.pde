@@ -38,8 +38,6 @@ class Grid extends GameObjectList {
 
   void draw(){
     super.draw();
-    fill(255,0,0);
-    rect(getGlobalPosition().x, getGlobalPosition().y, 20, 20);
   }
   
   void SetupCells() {
