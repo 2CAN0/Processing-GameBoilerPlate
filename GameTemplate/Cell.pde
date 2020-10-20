@@ -24,6 +24,7 @@ class Cell extends GameObjectList {
   
 
   void Update() {
+    super.Update();
     if (prevEn != enabled) {
       for (GameObject gobj : children) {
         gobj.enabled = enabled;
@@ -62,7 +63,7 @@ class Cell extends GameObjectList {
 
     noStroke();
     fill(bg.x, bg.y, bg.z);
-    rect(position.x, position.y, size.x, size.y);
+    rect(getGlobalPosition().x, getGlobalPosition().y, size.x, size.y);
   }
 }
 
@@ -119,7 +120,7 @@ class Border extends GameObject {
     if (enabled) {
       strokeWeight(weight);
       stroke(clr.x, clr.y, clr.z, 255);
-      line(Parent.position.x + start.x, Parent.position.y + start.y, Parent.position.x + end.x, Parent.position.y + end.y);
+      line(Parent.getGlobalPosition().x + start.x, Parent.getGlobalPosition().y + start.y, Parent.getGlobalPosition().x + end.x, Parent.getGlobalPosition().y + end.y);
     }
   }
 }

@@ -60,6 +60,10 @@ class GameObject {
   }
 }
 
+public PVector getGlobalPosition(){
+  return new PVector(position.x + Parent.getGlobalPosition().x, position.y + Parent.getGlobalPosition().y);
+}
+
 public enum RECTMODE {
   Center, 
     Corner

@@ -26,16 +26,17 @@ class TextObject extends GameObject {
      this.fontSize = fontSize;
   }
 
-  void UpdateText(String value) {
+  void SetText(String value) {
     text = value;
   }
 
-  void UpdatePosition(PVector position) {
+  void SetPosition(PVector position) {
     this.position = position;
   }
 
   public void draw() {
+    super.draw();
     textSize(fontSize);
-    text(text, position.x, position.y);
+    text(text, getGlobalPosition().x, getGlobalPosition().y);
   }
 }

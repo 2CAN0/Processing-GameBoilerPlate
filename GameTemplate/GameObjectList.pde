@@ -19,12 +19,7 @@ class GameObjectList extends GameObject {
   public void Update() {
     super.Update();
     for (GameObject obj : children) {
-      PVector desiredPosition = new PVector(0, 0);
-      desiredPosition.add(obj.Parent.position);
-      desiredPosition.add(obj.position);
-      obj.position = desiredPosition;
       obj.Update();
-      Debug.log("Object:"+obj.id);
     }
   }
 

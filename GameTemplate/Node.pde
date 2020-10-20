@@ -43,6 +43,6 @@ class Node extends Cell {
     else
       fill(bg.x, bg.y, bg.z);
 
-    rect(position.x, position.y, size.x, size.y);
+    rect(getGlobalPositino().x, getGlobalPositino().y, size.x, size.y);
   }
 }

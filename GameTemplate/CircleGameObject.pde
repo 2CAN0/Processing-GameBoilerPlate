@@ -13,4 +13,9 @@ class CircleGameObject extends GameObject {
     
     return d - (this.radius + other.radius) <= 0;    
   }
+
+  public void draw(){
+    super.draw();
+    ellipse(getGlobalPosition().x, getGlobalPosition().y, radius, radius);
+  }
 }
