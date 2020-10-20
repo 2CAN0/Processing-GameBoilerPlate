@@ -4,6 +4,7 @@ class InputHelper extends GameObject{
     keysDown = new boolean[MAX_KEYS];
   //private boolean[] previousKeys = new boolean[MAX_KEYS];
   private int[] framesActive;
+  private boolean mouseDown, mouseP;
 
   public InputHelper() {
     framesActive = new int[MAX_KEYS];
@@ -26,6 +27,8 @@ class InputHelper extends GameObject{
       } else
         framesActive[iKey] = 0;
     }
+
+    mouseDown = false;
   }
 
   public boolean IsKeyPressed(int keyCode) {
@@ -42,5 +45,15 @@ class InputHelper extends GameObject{
   
   public boolean IsKeyDown(char key){
      return keysDown[key]; 
+  }
+
+  // Will return true the entire time mouse is down
+  public boolean IsMousePressed(){
+    return mouseP;
+  }
+
+  // Will only return true the first frame the mouse is pressed
+  public boolean IsMouseDown(){
+    return mouseDown;
   }
 }
